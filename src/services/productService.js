@@ -1,24 +1,23 @@
-const { Product } = require('../../models');
+const productRepo = require('../repositories/productRepository');
 
 const createProduct = async (data) => {
-  return await Product.create(data);
+  return await productRepo.create(data);
 };
 
 const getProductById = async (id) => {
-  return await Product.findByPk(id);
+  return await productRepo.findById(id);
 };
 
 const updateProduct = async (id, updates) => {
-  await Product.update(updates, { where: { id } });
-  return getProductById(id);
+  return await productRepo.updateById(id, updates);
 };
 
 const deleteProduct = async (id) => {
-  return await Product.destroy({ where: { id } });
+  return await productRepo.deleteById(id);
 };
 
 const getAllProducts = async () => {
-  return await Product.findAll();
+  return await productRepo.findAll();
 };
 
 module.exports = {

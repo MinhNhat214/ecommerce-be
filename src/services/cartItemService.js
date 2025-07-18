@@ -1,25 +1,23 @@
-// services/cartItemService.js
-const { CartItem } = require('../../models');
+const cartItemRepo = require('../repositories/cartItemRepository');
 
 const createCartItem = async (data) => {
-  return await CartItem.create(data);
+  return await cartItemRepo.create(data);
 };
 
 const getCartItemById = async (id) => {
-  return await CartItem.findByPk(id);
+  return await cartItemRepo.findById(id);
 };
 
 const updateCartItem = async (id, updates) => {
-  await CartItem.update(updates, { where: { id } });
-  return getCartItemById(id);
+  return await cartItemRepo.updateById(id, updates);
 };
 
 const deleteCartItem = async (id) => {
-  return await CartItem.destroy({ where: { id } });
+  return await cartItemRepo.deleteById(id);
 };
 
 const getAllCartItems = async () => {
-  return await CartItem.findAll();
+  return await cartItemRepo.findAll();
 };
 
 module.exports = {

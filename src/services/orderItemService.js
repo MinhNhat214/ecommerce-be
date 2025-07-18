@@ -1,25 +1,23 @@
-// services/orderItemService.js
-const { OrderItem } = require('../../models');
+const orderItemRepo = require('../repositories/orderItemRepository');
 
 const createOrderItem = async (data) => {
-  return await OrderItem.create(data);
+  return await orderItemRepo.create(data);
 };
 
 const getOrderItemById = async (id) => {
-  return await OrderItem.findByPk(id);
+  return await orderItemRepo.findById(id);
 };
 
 const updateOrderItem = async (id, updates) => {
-  await OrderItem.update(updates, { where: { id } });
-  return getOrderItemById(id);
+  return await orderItemRepo.updateById(id, updates);
 };
 
 const deleteOrderItem = async (id) => {
-  return await OrderItem.destroy({ where: { id } });
+  return await orderItemRepo.deleteById(id);
 };
 
 const getAllOrderItems = async () => {
-  return await OrderItem.findAll();
+  return await orderItemRepo.findAll();
 };
 
 module.exports = {

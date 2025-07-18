@@ -1,30 +1,29 @@
-const { ProductImage } = require('../../models');
+const productImageRepo = require('../repositories/productImageRepository');
 
 const createProductImage = async (data) => {
-  return await ProductImage.create(data);
+  return await productImageRepo.create(data);
 };
 
 const getProductImageById = async (id) => {
-  return await ProductImage.findByPk(id);
+  return await productImageRepo.findById(id);
 };
 
 const updateProductImage = async (id, updates) => {
-  await ProductImage.update(updates, { where: { id } });
-  return getProductImageById(id);
+  return await productImageRepo.updateById(id, updates);
 };
 
 const deleteProductImage = async (id) => {
-  return await ProductImage.destroy({ where: { id } });
+  return await productImageRepo.deleteById(id);
 };
 
 const getAllProductImages = async () => {
-  return await ProductImage.findAll();
+  return await productImageRepo.findAll();
 };
 
 module.exports = {
   createProductImage,
   getProductImageById,
-    updateProductImage,
+  updateProductImage,
   deleteProductImage,
   getAllProductImages,
 };

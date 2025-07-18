@@ -1,25 +1,23 @@
-// services/paymentService.js
-const { Payment } = require('../../models');
+const paymentRepo = require('../repositories/paymentRepository');
 
 const createPayment = async (data) => {
-  return await Payment.create(data);
+  return await paymentRepo.create(data);
 };
 
 const getPaymentById = async (id) => {
-  return await Payment.findByPk(id);
+  return await paymentRepo.findById(id);
 };
 
 const updatePayment = async (id, updates) => {
-  await Payment.update(updates, { where: { id } });
-  return getPaymentById(id);
+  return await paymentRepo.updateById(id, updates);
 };
 
 const deletePayment = async (id) => {
-  return await Payment.destroy({ where: { id } });
+  return await paymentRepo.deleteById(id);
 };
 
 const getAllPayments = async () => {
-  return await Payment.findAll();
+  return await paymentRepo.findAll();
 };
 
 module.exports = {

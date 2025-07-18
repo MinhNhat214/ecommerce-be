@@ -1,47 +1,24 @@
-// services/cartService.js
-const cartRepository = require('../repositories/cartRepository')
-const cartItemRepository = require('../repositories/cartRepository')
+const cartRepo = require('../repositories/cartRepository');
 
 const createCart = async (data) => {
-  return await cartRepository.create(data);
+  return await cartRepo.create(data);
 };
 
 const getCartById = async (id) => {
-  const cart = await cartRepository.getCartById(id);
-  if (!cart) {
-    throw new Error('Giỏ hàng không tồn tại');
-  }
-  return cart;
+  return await cartRepo.findById(id);
 };
 
 const updateCart = async (id, updates) => {
-  const cart = await getCartById(id);
-  if (!cart) {
-      throw new Error('Cart không tồn tại');
-    }
-  return await cartRepository.updateCart(id, updates);
+  return await cartRepo.updateById(id, updates);
 };
 
 const deleteCart = async (id) => {
-  const cart = await getCartById(id)
-
-  return await cartRepository.deleteCart(cart);
+  return await cartRepo.deleteById(id);
 };
 
 const getAllCarts = async () => {
-  return await cartRepository.getAllCarts();
+  return await cartRepo.findAll();
 };
-
-
-const createCartWithCartItem = async (cartData, cartItemsData)  => {
-  const cart = await cartRepository.createCart(cartData);
-  for (const item of cartItemsData){
-    await cartItemRepository.create({ 
-      ...item, 
-      cart_id: cart.cart_id 
-    });
-  }
-}
 
 module.exports = {
   createCart,
@@ -49,5 +26,4 @@ module.exports = {
   updateCart,
   deleteCart,
   getAllCarts,
-  createCartWithCartItem
 };

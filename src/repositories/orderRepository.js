@@ -1,31 +1,22 @@
-// services/orderService.js
 const { Order } = require('../../models');
 
-const createOrder = async (data) => {
-  return await Order.create(data);
-};
+const create = (data) => Order.create(data);
 
-const getOrderById = async (id) => {
-  return await Order.findByPk(id);
-};
+const findById = (id) => Order.findByPk(id);
 
-const updateOrder = async (id, updates) => {
+const updateById = async (id, updates) => {
   await Order.update(updates, { where: { id } });
-  return getOrderById(id);
+  return findById(id);
 };
 
-const deleteOrder = async (id) => {
-  return await Order.destroy({ where: { id } });
-};
+const deleteById = (id) => Order.destroy({ where: { id } });
 
-const getAllOrders = async () => {
-  return await Order.findAll();
-};
+const findAll = () => Order.findAll();
 
 module.exports = {
-  createOrder,
-  getOrderById,
-  updateOrder,
-  deleteOrder,
-  getAllOrders,
+  create,
+  findById,
+  updateById,
+  deleteById,
+  findAll,
 };

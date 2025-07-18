@@ -1,31 +1,22 @@
-// services/paymentService.js
 const { Payment } = require('../../models');
 
-const createPayment = async (data) => {
-  return await Payment.create(data);
-};
+const create = (data) => Payment.create(data);
 
-const getPaymentById = async (id) => {
-  return await Payment.findByPk(id);
-};
+const findById = (id) => Payment.findByPk(id);
 
-const updatePayment = async (id, updates) => {
+const updateById = async (id, updates) => {
   await Payment.update(updates, { where: { id } });
-  return getPaymentById(id);
+  return findById(id);
 };
 
-const deletePayment = async (id) => {
-  return await Payment.destroy({ where: { id } });
-};
+const deleteById = (id) => Payment.destroy({ where: { id } });
 
-const getAllPayments = async () => {
-  return await Payment.findAll();
-};
+const findAll = () => Payment.findAll();
 
 module.exports = {
-  createPayment,
-  getPaymentById,
-  updatePayment,
-  deletePayment,
-  getAllPayments,
+  create,
+  findById,
+  updateById,
+  deleteById,
+  findAll,
 };
