@@ -1,0 +1,30 @@
+# Bỏ qua thư mục chứa các gói đã cài đặt
+node_modules/
+
+# Bỏ file biến môi trường chứa thông tin nhạy cảm
+.env
+
+# Bỏ log files (log lỗi, ghi chú debug...)
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# Bỏ cache của hệ điều hành
+.DS_Store      # macOS
+Thumbs.db      # Windows
+
+# Bỏ thư mục build nếu bạn compile code
+dist/
+build/
+
+# Bỏ lock file nếu bạn chỉ dùng 1 trình quản lý gói
+# Nếu bạn dùng npm, bỏ yarn.lock. Ngược lại nếu dùng yarn, bỏ package-lock.json
+yarn.lock
+# package-lock.json
+
+# VS Code config (tuỳ chọn)
+.vscode/
+
+# Các file note cá nhân đến project
+rest.http
+*.txt
